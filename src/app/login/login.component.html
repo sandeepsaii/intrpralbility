@@ -1,0 +1,254 @@
+
+<div class="container-fluid" style="background-image:url('images/1.jpg');
+position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  overflow-x: hidden;
+  background-position: center;
+    
+    background-size: cover;
+  opacity: 0.7;">
+
+<div *ngIf="!newUser" class="form-simple col-md-10">
+
+  <!--Form with header-->
+  <mdb-card style="margin-top:80px;margin-left:30px;margin-right:450px">
+
+    <!--Header-->
+    <div class="header pt-1 grey lighten-2">
+
+      <div class="row d-flex justify-content-start">
+        <h3 class="deep-grey-text mt-3 mb-4 pb-1 mx-5" style="font-family:lucida grande">Login</h3>
+      </div>
+
+    </div>
+    <!--Header-->
+
+    <mdb-card-body class="mx-4 mt-4">
+
+      <!--Body [(ngModel)]="model.username" #username="ngModel" required -->
+      <form name="form" [formGroup]="simpleForm" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+
+
+        <div class="md-form md-3 noSpan" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+          <input type="text" id="simpleFormEmailEx" class="form-control" formControlName="simpleFormEmailEx" mdbInputDirective>
+          <label for="simpleFormEmailEx">Your email</label>
+          <div *ngIf="f.submitted && !username.valid" class="help-block">Your email is required</div>
+        </div>
+
+        <div class="md-form md-3 pb-3 noSpan" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+          <input type="password" id="simpleFormPasswordEx" class="form-control" formControlName="simpleFormPasswordEx" mdbInputDirective>
+          <label for="simpleFormPasswordEx">Your password</label>
+          <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+          <p class="font-small grey-text d-flex justify-content-end">Forgot
+            <a href="#" class="dark-grey-text font-weight-bold ml-1"> Password?</a>
+          </p>
+        </div>
+      </form>
+
+      <div class="text-center mb-4">
+        <button type="button" mdbBtn color="danger" block="true" class="z-depth-2" (click)="isLoggedIn()" [routerLink]="['querydetails']">Login</button>
+      </div>
+      <p class="font-small grey-text d-flex justify-content-center">Don't have an account?
+        <a href="#" class="dark-grey-text font-weight-bold ml-1" (click)="toggleSignPage()"> Sign up</a>
+      </p>
+
+    </mdb-card-body>
+
+  </mdb-card>
+  <!--/Form with header-->
+</div>
+
+
+<div class="row">
+<div *ngIf="newUser"  class="form-simple" style="opacity:0.9" class="needs-validation ml" novalidate>
+
+<!-- REGISTER -->
+
+  <mdb-card style="margin-top:70px;margin-left:185px;margin-right:155px;margin-bottom: 0px;overflow-y: hidden; overflow-x: hidden;">
+
+    <!--Header-->
+    <div class="header pt-1 grey lighten-2" style="height: 65px;">
+
+      <div class="row d-flex justify-content-start">
+        <h3 class="deep-grey-text mt-3 mb-4 pb-1 mx-5" style="font-family:lucida grande;">Register
+        </h3>
+        <span style="float: right;margin-left:58%;margin-top:30px;" class="font-small grey-text" >Already have an account?
+            <a href="#" class="dark-red-text font-weight-bold ml-1" (click)="toggleSignPage()"> Sign In</a>
+          </span>
+      </div>
+
+    </div>
+    <!--Header-->
+
+    <mdb-card-body class="mx-4 mt-4" >
+
+      <!--Body-->
+      <!-- Register form -->
+    <form  [formGroup]="registerForm"  (ngSubmit)="register()" class="noSpan" style="max-height:370px;overflow-y: scroll;overflow-x: hidden;">
+    
+    <div formGroupName="user" >
+      <div class="row">
+      <div class="md-form md-3 md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="OrganisationID" class="form-control" formControlName="OrganisationID" mdbInputDirective>
+          <label for="OrganisationID">Organisation Id</label>
+        </div>
+
+        <div class="md-form md-3 md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="OrganisationName" class="form-control" 
+          formControlName="OrganisationName" mdbInputDirective>
+          <label for="OrganisationName">Organisation Name</label>
+        </div>
+        <div class="md-form md-3 md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="OrganisationCode" class="form-control" 
+          formControlName="OrganisationCode" mdbInputDirective>
+          <label for="OrganisationCode">Organisation Code</label>
+        </div>
+        <div class="md-form md-3 md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="OrganisationType" class="form-control"
+           formControlName="OrganisationType" mdbInputDirective>
+          <label for="OrganisationType">Organisation Type</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="OrganisationCounty" class="form-control" formControlName="OrganisationCounty" mdbInputDirective>
+          <label for="OrganisationCounty">Organisation County</label>
+        </div>
+        <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="OrganisationCountry" class="form-control" formControlName="OrganisationCountry" mdbInputDirective>
+          <label for="OrganisationCountry">Organisation Country</label>
+        </div>
+      <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="ParentOrganisationID" class="form-control" formControlName="ParentOrganisationID" mdbInputDirective>
+          <label for="ParentOrganisationID">Parent Organisation Id</label>
+        </div>
+        <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="ContactPerson" class="form-control" formControlName="ContactPerson" mdbInputDirective>
+          <label for="ContactPerson">Contact Person</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="AddressLine1" class="form-control" formControlName="AddressLine1" mdbInputDirective>
+          <label for="AddressLine1">Address Line 1</label>
+        </div>
+        <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="AddressLine2" class="form-control" formControlName="AddressLine2" mdbInputDirective>
+          <label for="AddressLine2">Address Line 1</label>
+        </div>
+      <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="CityName" class="form-control" formControlName="CityName" mdbInputDirective>
+          <label for="CityName">City Name</label>
+        </div>
+        <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="StateCode" class="form-control" formControlName="StateCode" mdbInputDirective>
+          <label for="StateCode">State Code</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="ZipCode" class="form-control" formControlName="ZipCode" mdbInputDirective>
+          <label for="ZipCode">Zip Code</label>
+        </div>
+        <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="ContactPhone" class="form-control" formControlName="ContactPhone" mdbInputDirective>
+          <label for="ContactPhone">Contact Phone</label>
+        </div>
+      <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="EmailID" class="form-control" formControlName="EmailID" mdbInputDirective>
+          <label for="EmailId">Email Id</label>
+        </div>
+        <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="Fax" class="form-control" formControlName="Fax" mdbInputDirective>
+          <label for="Fax">Fax</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="WebsiteURL" class="form-control" formControlName="WebsiteURL" mdbInputDirective>
+          <label for="WebsiteURL">Website URL</label>
+        </div>
+        <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="TIN" class="form-control" formControlName="TIN" mdbInputDirective>
+          <label for="TIN">TIN</label>
+        </div>
+      <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="CCN" class="form-control" formControlName="CCN" mdbInputDirective>
+          <label for="CCN">CCN</label>
+        </div>
+        <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="SSN" class="form-control" formControlName="SSN" mdbInputDirective>
+          <label for="SSN">SSN</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="NPI" class="form-control" formControlName="NPI" mdbInputDirective>
+          <label for="NPI">NPI</label>
+        </div>
+        <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="EIN" class="form-control" formControlName="EIN" mdbInputDirective>
+          <label for="EIN">EIN</label>
+        </div>
+      <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="IsInternal" class="form-control" formControlName="IsInternal" mdbInputDirective>
+          <label for="IsInternal">Is Internal</label>
+        </div>
+        <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="IsActive" class="form-control" formControlName="IsActive" mdbInputDirective>
+          <label for="IsActive">Is Active</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="ProviderUPINNumber" class="form-control" formControlName="ProviderUPINNumber" mdbInputDirective>
+          <label for="ProviderUPINNumber">Provider UPIN Number</label>
+        </div>
+        <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="LocationNumber" class="form-control" formControlName="LocationNumber" mdbInputDirective>
+          <label for="LocationNumber">Location Number</label>
+        </div>
+      <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="NCPDPNumber" class="form-control" formControlName="NCPDPNumber" mdbInputDirective>
+          <label for="NCPDPNumber">NCPDP Number</label>
+        </div>
+        <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="OtherIdentifier" class="form-control" formControlName="OtherIdentifier" mdbInputDirective>
+          <label for="OtherIdentifier">Other Identifier</label>
+        </div>
+      </div>
+
+<div class="row">
+  <div class="md-form col-4" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="ProviderCommercialNumber" class="form-control" formControlName="ProviderCommercialNumber" mdbInputDirective style="margin-left: -15px">
+          <label for="ProviderCommercialNumber"> Provider Commercial Number</label>
+        </div>
+  
+        <div class="md-form md-3" style="margin-left:25px;margin-right: 25px">
+          <input type="text" id="StateLicenseNumber" class="form-control" formControlName="StateLicenseNumber" mdbInputDirective>
+          <label for="StateLicenseNumber">State License Number</label>
+        </div>
+</div> 
+</div>
+<div class="text-center md-4">
+    <button type="Submit" style="margin-left:300px;margin-right:270px;width:300px" mdbBtn color="success" block="true" [routerLink]="['']">Submit</button>
+  </div>
+</form>
+<!-- Register form -->
+    </mdb-card-body>
+
+
+  </mdb-card>
+
+</div>
+
+</div>
+
+
