@@ -9,15 +9,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { ServicesService } from './services.service';
-//import { CardloginComponent } from './cardlogin/cardlogin.component';
+import { CardloginComponent } from './cardlogin/cardlogin.component';
+import { DataService } from './data.service';
+import { HttpClientModule } from '@angular/common/http';
+import {SharedService} from './shared.service'
 
 
 @NgModule({
   declarations: [
     AppComponent,
     QuerydetailsComponent, 
-    LoginComponent
-     //CardloginComponent
+    LoginComponent,
+    CardloginComponent
    
   ],
   imports: [
@@ -25,12 +28,14 @@ import { ServicesService } from './services.service';
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
+    HttpClientModule,
     AppRoutingModule,
      NgbModule.forRoot(),
     MDBBootstrapModule.forRoot()
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [ServicesService],
+  providers: [ServicesService, DataService,SharedService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

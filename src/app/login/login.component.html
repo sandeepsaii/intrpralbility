@@ -28,8 +28,50 @@ position:absolute;
 
     <mdb-card-body class="mx-4 mt-4">
 
+      <div class="mod_login" *ngIf="!isUserAuthenticated">
+            <div class="row">
+                <div class="colum small-12">
+                    <div class="login_header">
+                        <h1>Aciana</h1>
+                        <div *ngIf="!errorMessage">You are not logged in! Use Google to login.
+                        </div>
+                        <div class="login_status" *ngIf="errorMessage">{{ errorMessage }}</div>
+                    </div>
+                </div>
+                <div class="column small-12">
+                    <a (click)="loginInProgress === false ? showLoginInProgress(): null;" [attr.href]="authenticationUrl" class="mod_button" [ngClass]="{loading:loginInProgress === true}">
+                        <div class="load-circle"></div>
+                        <ng-container *ngIf="!loginInProgress">Login</ng-container>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <form class="mod_login" (ngSubmit)="importCard($event)" *ngIf="isUserAuthenticated && !isUserLoggedIn && !isLoading">
+          <div class="row">
+              <div class="colum small-1login2">
+                  <div class="login_header">
+                      <h1>Aciana</h1>
+                      <div *ngIf="!errorMessage">particular card is neccessary (.card)</div>
+                      <div class="login_status" *ngIf="errorMessage">{{ errorMessage }}</div>
+                  </div>
+              </div>
+              <div class="column small-12 card-upload">
+                  <label>
+                      <input type="file" placeholder="Upload file" accept=".card">
+                  </label>
+              </div>
+              <div class="column small-12">
+                  <button class="mod_button upload-button" type="submit" [ngClass]="{loading:loginInProgress === true}">
+                      <div class="load-circle"></div>
+                      <ng-container *ngIf="!loginInProgress">Login</ng-container>
+                  </button>
+              </div>
+          </div>
+      </form>
+
+       
       <!--Body [(ngModel)]="model.username" #username="ngModel" required -->
-      <form name="form" [formGroup]="simpleForm" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+      <!-- <form name="form" [formGroup]="simpleForm" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
 
 
         <div class="md-form md-3 noSpan" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
@@ -46,16 +88,16 @@ position:absolute;
             <a href="#" class="dark-grey-text font-weight-bold ml-1"> Password?</a>
           </p>
         </div>
-      </form>
+      </form> -->
 
-      <div class="text-center mb-4">
+      <!-- <div class="text-center mb-4">
         <button type="button" mdbBtn color="danger" block="true" class="z-depth-2" (click)="isLoggedIn()" [routerLink]="['querydetails']">Login</button>
       </div>
       <p class="font-small grey-text d-flex justify-content-center">Don't have an account?
         <a href="#" class="dark-grey-text font-weight-bold ml-1" (click)="toggleSignPage()"> Sign up</a>
-      </p>
+      </p> -->
 
-    </mdb-card-body>
+    </mdb-card-body> 
 
   </mdb-card>
   <!--/Form with header-->
@@ -250,5 +292,5 @@ position:absolute;
 </div>
 
 </div>
-
+<a #card href="/card" id="homeLink">card</a>
 
